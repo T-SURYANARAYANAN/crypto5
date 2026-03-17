@@ -22,59 +22,55 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 ```c
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-void encryptRailFence(char *message, int rails) {
-    int len = strlen(message);
+int main()
+{
+    char text[100], rail[10][100];
+    int i, j, len, key;
+    int row = 0, dir = 1;
 
-    char rail[rails][len];
+    printf("Enter text: ");
+    scanf("%s", text);
 
-    // Fill with newline as placeholder
-    for (int i = 0; i < rails; i++)
-        for (int j = 0; j < len; j++)
+    printf("Enter key: ");
+    scanf("%d", &key);
+
+    len = strlen(text);
+
+    // Initialize matrix
+    for(i = 0; i < key; i++)
+        for(j = 0; j < len; j++)
             rail[i][j] = '\n';
 
-    int row = 0;
-    int direction = 1;
+    // Fill zig-zag
+    for(i = 0; i < len; i++)
+    {
+        rail[row][i] = text[i];
 
-    for (int i = 0; i < len; i++) {
-        rail[row][i] = message[i];
+        if(row == 0)
+            dir = 1;
+        else if(row == key - 1)
+            dir = -1;
 
-        // Move up or down
-        row += direction;
-
-        // Change direction at top or bottom
-        if (row == rails - 1 || row == 0)
-            direction = -direction;
+        row += dir;
     }
 
-    printf("Encrypted text: ");
-    for (int i = 0; i < rails; i++)
-        for (int j = 0; j < len; j++)
-            if (rail[i][j] != '\n')
+    // Encryption
+    printf("Encrypted Text: ");
+    for(i = 0; i < key; i++)
+    {
+        for(j = 0; j < len; j++)
+        {
+            if(rail[i][j] != '\n')
                 printf("%c", rail[i][j]);
-
+        }
+    }
     printf("\n");
-}
-
-int main() {
-    char message[100];
-    int rails;
-
-    printf("Enter a Secret Message: ");
-    scanf(" %[^\n]", message);   // allows spaces
-
-    printf("Enter number of rails: ");
-    scanf("%d", &rails);
-
-    encryptRailFence(message, rails);
-
     return 0;
 }
-
 ```
 # OUTPUT
-<img width="1919" height="924" alt="image" src="https://github.com/user-attachments/assets/7abe5ec6-2f5d-43c1-b5ce-963f18660480" />
+<img width="534" height="262" alt="image" src="https://github.com/user-attachments/assets/21041caa-96ac-4da7-9578-e7d1c19cb27a" />
 
 # RESULT
 C program to implement the rail fence transposition technique is executed successfully
