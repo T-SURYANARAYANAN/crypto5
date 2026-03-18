@@ -70,7 +70,7 @@ int main()
 }
 ```
 # OUTPUT
-<img width="534" height="262" alt="image" src="https://github.com/user-attachments/assets/21041caa-96ac-4da7-9578-e7d1c19cb27a" />
+<img width="571" height="279" alt="image" src="https://github.com/user-attachments/assets/545e71cd-fada-4c15-a75d-558bd469453e" />
 
 # RESULT
 C program to implement the rail fence transposition technique is executed successfully
